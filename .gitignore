@@ -1,4 +1,6 @@
 .terraform/
 terraform.tfstate
 terraform.tfstate.bak
+terraform.tfstate.backup
+kubectl
 ansible_new_key.pem
