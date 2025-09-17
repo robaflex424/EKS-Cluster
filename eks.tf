@@ -18,9 +18,15 @@ resource "aws_eks_node_group" "node_group" {
     max_size = 10
     min_size = 4
   }
+
+  remote_access {
+    ec2_ssh_key = "ansible_new_key"
+    source_security_group_ids = [aws_security_group.eks_nodes_sg.id]
+  }
+
   instance_types = ["t2.micro"]
   depends_on = [ aws_iam_role_policy_attachment.AmazonEC2ContainerRegistryReadOnly,
                  aws_iam_role_policy_attachment.AmazonEKS_CNI_Policy,
                  aws_iam_role_policy_attachment.AmazonEKSWorkerNodePolicy
-                ]    
+                ]   
 }
